@@ -1,15 +1,17 @@
 package org.example.service;
 
-import org.example.repository.Todo;
+import org.example.domain.Todo;
+import org.example.repository.TodoRepository;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class TodoService {
-    private List<Todo> todoList;
 
-    public TodoService(List<Todo> todoList) {
-        this.todoList = todoList;
+    private TodoRepository repository;
+
+    public TodoService(TodoRepository repository) {
+        this.repository = repository;
     }
 
     public void addTask(Scanner scanner) {
@@ -24,7 +26,7 @@ public class TodoService {
         // Your updateTask logic here
     }
 
-    public void readTasks() {
-        // Your readTasks logic here
+    public List<Todo> readTasks() {
+         return repository.readTasks();
     }
 }
