@@ -6,7 +6,7 @@ import org.example.service.TodoService;
 import java.util.Scanner;
 
 public class TodoController {
-    private TodoService todoService;
+    private final TodoService todoService;
     private Scanner scanner = new Scanner(System.in);
 
     public TodoController(TodoService todoService) {

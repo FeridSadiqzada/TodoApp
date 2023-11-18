@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class TodoService {
 
-    private TodoRepository repository;
+    private final TodoRepository repository;
 
     public TodoService(TodoRepository repository) {
         this.repository = repository;
