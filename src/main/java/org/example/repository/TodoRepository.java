@@ -12,7 +12,7 @@ public class TodoRepository {
 
 
     public void addTask(Todo todo) {
-        // Your addTask logic here
+        todoList.add(todo);
     }
 
     public void deleteTask(UUID id) {

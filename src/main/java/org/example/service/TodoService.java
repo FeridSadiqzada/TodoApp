@@ -14,8 +14,8 @@ public class TodoService {
         this.repository = repository;
     }
 
-    public void addTask(Scanner scanner) {
-        // Your addTask logic here
+    public void addTask(Todo todo) {
+        repository.addTask(todo);
     }
 
     public void deleteTask(Scanner scanner) {
