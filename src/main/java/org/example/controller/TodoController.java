@@ -1,16 +1,17 @@
 package org.example.controller;
 
+import org.example.domain.Todo;
 import org.example.service.TodoService;
 
 import java.util.Scanner;
 
 public class TodoController {
-    private TodoService todoService;
-    private Scanner scanner;
+    private final TodoService todoService;
+    private Scanner scanner = new Scanner(System.in);
 
-    public TodoController(TodoService todoService, Scanner scanner) {
+    public TodoController(TodoService todoService) {
         this.todoService = todoService;
-        this.scanner = scanner;
+
     }
 
     public void run() {
@@ -28,7 +29,11 @@ public class TodoController {
 
             switch (choice) {
                 case 1:
-                    todoService.addTask(scanner);
+                    System.out.println("enter description");
+                    String description = scanner.nextLine();
+                    Todo todo = new Todo();
+                    todo.setDescription(description);
+                    todoService.addTask(todo);
                     break;
                 case 2:
                     todoService.deleteTask(scanner);
