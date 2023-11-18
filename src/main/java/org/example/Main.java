@@ -5,15 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.example.domain.Todo;
+import org.example.repository.TodoRepository;
 import org.example.service.TodoService;
 
 
 
 public class Main {
-    List<Todo> todoList = new ArrayList<>();
-
-    TodoService todoService = new TodoService(todoList);
-    TodoController todoController = new TodoController(todoService, new Scanner(System.in));
+//    List<Todo> todoList = new ArrayList<>();
+    TodoRepository repository = new TodoRepository();
+    TodoService todoService = new TodoService(repository);
+    TodoController todoController = new TodoController(todoService);
 
     public static void main(String[] args) {
         new Main().todoController.run();

@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class TodoController {
     private TodoService todoService;
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
-    public TodoController(TodoService todoService, Scanner scanner) {
+    public TodoController(TodoService todoService) {
         this.todoService = todoService;
-        this.scanner = scanner;
+
     }
 
     public void run() {
