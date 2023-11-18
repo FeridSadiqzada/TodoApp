@@ -1,7 +1,9 @@
-package org.example.models;
+package org.example.repository;
 
-public class TodoApp {
-    private int Id;
+import java.util.UUID;
+
+public class Todo {
+    UUID uuid=UUID.randomUUID();
     private String Title;
     private String Description;
     private  String CreatedBy;
@@ -10,14 +12,6 @@ public class TodoApp {
     private  String Priority;
     private String Created;
     // Getters and Setters
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
 
     public String getTitle() {
         return Title;
