@@ -1,4 +1,4 @@
-package org.example.repository;
+package org.example.domain;
 
 import java.util.UUID;
 
@@ -11,7 +11,6 @@ public class Todo {
     private  String Status;
     private  String Priority;
     private String Created;
-    // Getters and Setters
 
     public String getTitle() {
         return Title;
