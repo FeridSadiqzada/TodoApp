@@ -4,68 +4,68 @@ import java.util.UUID;
 
 public class Todo {
     UUID uuid=UUID.randomUUID();
-    private String Title;
-    private String Description;
-    private  String CreatedBy;
-    private String AssignedTo;
-    private  String Status;
-    private  String Priority;
-    private String Created;
+    private String title;
+    private String description;
+    private  String createdBy;
+    private String assignedTo;
+    private  String status;
+    private  String priority;
+    private String created;
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getCreatedBy() {
-        return CreatedBy;
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
-        CreatedBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     public String getAssignedTo() {
-        return AssignedTo;
+        return assignedTo;
     }
 
     public void setAssignedTo(String assignedTo) {
-        AssignedTo = assignedTo;
+        this.assignedTo = assignedTo;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public String getPriority() {
-        return Priority;
+        return priority;
     }
 
     public void setPriority(String priority) {
-        Priority = priority;
+        this.priority = priority;
     }
 
     public String getCreated() {
-        return Created;
+        return created;
     }
 
     public void setCreated(String created) {
-        Created = created;
+        this.created = created;
     }
 
 

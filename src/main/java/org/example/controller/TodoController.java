@@ -1,6 +1,9 @@
 package org.example.controller;
 import org.example.domain.Todo;
 import org.example.service.TodoService;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TodoController {
@@ -11,6 +14,7 @@ public class TodoController {
     }
     public void run() {
         int choice;
+
         do {
             System.out.println("1. Add Task");
             System.out.println("2. Delete Task");
@@ -26,7 +30,7 @@ public class TodoController {
                 case 1:
                     System.out.println("enter description");
                     String description = scanner.nextLine();
-                    Todo todo = new Todo();
+                   Todo todo = new Todo();
                     todo.setDescription(description);
                     todoService.addTask(todo);
                     break;

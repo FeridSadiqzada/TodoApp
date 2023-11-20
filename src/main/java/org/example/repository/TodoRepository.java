@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TodoRepository {
+import static jdk.internal.org.jline.utils.ShutdownHooks.tasks;
+
+
+public class TodoRepository  {
     private final List<Todo> todoList = new ArrayList<>();
 
 
@@ -13,11 +16,20 @@ public class TodoRepository {
     }
 
     public void deleteTask(UUID id) {
-        // Your deleteTask logic here
-    }
+        if (tasks.containsKey(id)) {
+            Todo deletedTask = tasks.remove(id);
+            System.out.println("Task deleted: " + deletedTask);
+        } else {
+            System.out.println( " not found. No task deleted.");
+        }    }
 
     public void updateTask(UUID id, Todo todo) {
-        // Your updateTask logic here
+        if (tasks.containsKey(id)) {
+            tasks.put(id, updatedTodo);
+            System.out.println("Task updated: " + updatedTodo);
+        } else {
+            System.out.println(" not found. No task updated.");
+        }
     }
 
     public List<Todo> readTasks() {
