@@ -5,6 +5,7 @@ import org.example.service.TodoService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class TodoController {
     private final TodoService todoService;
@@ -12,6 +13,7 @@ public class TodoController {
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
+    
     public void run() {
         int choice;
 
@@ -24,7 +26,7 @@ public class TodoController {
 
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // consume the newline character
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -41,7 +43,7 @@ public class TodoController {
                     todoService.updateTask(scanner);
                     break;
                 case 4:
-                    todoService.readTasks();
+                    todoService.readTasks(UUID.randomUUID());
                     break;
                 case 0:
                     System.out.println("Exiting program. Goodbye!");

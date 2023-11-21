@@ -3,7 +3,7 @@ package org.example.domain;
 import java.util.UUID;
 
 public class Todo {
-    UUID uuid=UUID.randomUUID();
+    UUID id =UUID.randomUUID();
     private String title;
     private String description;
     private  String createdBy;
@@ -11,6 +11,18 @@ public class Todo {
     private  String status;
     private  String priority;
     private String created;
+    public Todo(){};
+    public Todo( UUID id,String title,String description,String createdBy,String assignedTo,String status,String priority,String created){
+        this.id = id;
+        this.assignedTo=assignedTo;
+        this.created=created;
+        this.createdBy=createdBy;
+        this.priority=priority;
+        this.description=description;
+        this.status=status;
+        this.title=title;
+
+    };
 
     public String getTitle() {
         return title;

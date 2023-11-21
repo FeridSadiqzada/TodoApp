@@ -4,35 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static jdk.internal.org.jline.utils.ShutdownHooks.tasks;
 
 
-public class TodoRepository  {
+public class TodoRepository extends JpaRepository<Todo, String>  {
+
+    Todo findByTitle(String title);
+
+    List<Todo> findAllByTitle(String title);
+
     private final List<Todo> todoList = new ArrayList<>();
 
 
-    public void addTask(Todo todo) {
+    public void addTodo(Todo todo) {
         todoList.add(todo);
     }
 
-    public void deleteTask(UUID id) {
-        if (tasks.containsKey(id)) {
-            Todo deletedTask = tasks.remove(id);
+    public void deleteTodo(UUID id) {
+        if (todo.containsKey(id)) {
+            Todo deletedTask = todo.remove(id);
             System.out.println("Task deleted: " + deletedTask);
         } else {
             System.out.println( " not found. No task deleted.");
-        }    }
+        }
+       }
 
-    public void updateTask(UUID id, Todo todo) {
-        if (tasks.containsKey(id)) {
-            tasks.put(id, updatedTodo);
+    public void updateTodo(UUID uuid, Todo todo) {
+        if (todo.containsKey(id)) {
+            todo.put(id, updatedTodo);
             System.out.println("Task updated: " + updatedTodo);
         } else {
             System.out.println(" not found. No task updated.");
         }
-    }
 
-    public List<Todo> readTasks() {
+    }
+    public List<Todo> readTodo() {
         return todoList;
     }
 }
