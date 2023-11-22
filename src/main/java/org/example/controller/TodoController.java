@@ -1,12 +1,8 @@
 package org.example.controller;
 import org.example.domain.Todo;
 import org.example.service.TodoService;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
-
 public class TodoController {
     private final TodoService todoService;
     private Scanner scanner = new Scanner(System.in);
@@ -32,8 +28,10 @@ public class TodoController {
                 case 1:
                     System.out.println("enter description");
                     String description = scanner.nextLine();
-                   Todo todo = new Todo();
+                    String status = scanner.nextLine();
+                    Todo todo = new Todo(UUID.randomUUID(), description, status);
                     todo.setDescription(description);
+                    todo.setStatus(status);
                     todoService.addTask(todo);
                     break;
                 case 2:
@@ -43,7 +41,7 @@ public class TodoController {
                     todoService.updateTask(scanner);
                     break;
                 case 4:
-                    todoService.readTasks(UUID.randomUUID());
+                    todoService.readTasks();
                     break;
                 case 0:
                     System.out.println("Exiting program. Goodbye!");

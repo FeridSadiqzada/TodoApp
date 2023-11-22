@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Todo {
@@ -11,7 +12,7 @@ public class Todo {
     private  String status;
     private  String priority;
     private String created;
-    public Todo(){};
+    public Todo(UUID id, String description, String status){};
     public Todo( UUID id,String title,String description,String createdBy,String assignedTo,String status,String priority,String created){
         this.id = id;
         this.assignedTo=assignedTo;
@@ -23,6 +24,14 @@ public class Todo {
         this.title=title;
 
     };
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -75,10 +84,21 @@ public class Todo {
     public String getCreated() {
         return created;
     }
+    public String isCreated() {
+        return created;
+    }
 
     public void setCreated(String created) {
         this.created = created;
     }
 
-
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                '}';
+    }
 }
