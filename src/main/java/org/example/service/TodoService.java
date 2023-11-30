@@ -19,9 +19,9 @@ public class TodoService {
         this.repository = repository;
     }
 
-    public void addTask(Todo todo) {
-            System.out.println("Enter id:");
-            UUID id = UUID.fromString(scanner.nextLine());
+    public void addTask() {
+//            System.out.println("Enter id:");
+
 
             System.out.println("Enter title:");
             String title = scanner.nextLine();
@@ -29,7 +29,7 @@ public class TodoService {
             System.out.println("Enter description:");
             String description = scanner.nextLine();
 
-            Todo newTodo = new Todo(id, title, description);
+            Todo newTodo = new Todo( title, description);
             repository.addTodo(newTodo);
         }
     public void deleteTask(Scanner scanner) {
@@ -56,7 +56,7 @@ public class TodoService {
                 System.out.println("Enter the new status:");
                 String status = scanner.nextLine();
 
-                Todo updatedTodo = new Todo(id, description, status);
+                Todo updatedTodo = new Todo( description, status);
                 repository.updateTodo(id, updatedTodo);
                 System.out.println("Task updated successfully.");
             } else {
@@ -65,7 +65,10 @@ public class TodoService {
         }
 
     public List<Todo> readTasks() {
-
+        List<Todo> tasks = repository.readTasks();
+        tasks.forEach(t->{
+            System.out.println("Title: " +t.getTitle() + "," +  "Description: " + t.getDescription());
+        });
         return repository.readTasks();
     }
 }

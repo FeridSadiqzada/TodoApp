@@ -13,7 +13,7 @@ public class TodoServiceTest {
         TodoService todoService = new TodoService(todoRepository);
 
         Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
-        todoService.addTask(todoToAdd);
+        todoService.addTask();
 
         List<Todo> allTodos = todoService.readTasks();
         assertEquals(1, allTodos.size());
@@ -27,7 +27,7 @@ public class TodoServiceTest {
 
         // Adding a Todo
         Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
-        todoService.addTask(todoToAdd);
+        todoService.addTask();
 
         // Updating the added Todo
 //        Todo updatedTodo = new Todo(todoToAdd.getId(), "Updated Todo", "Updated description");
@@ -44,7 +44,7 @@ public class TodoServiceTest {
 
         // Adding a Todo
         Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
-        todoService.addTask(todoToAdd);
+        todoService.addTask();
 
         // Deleting the added Todo
   //      todoService.deleteTask(todoToAdd.getId());

@@ -1,29 +1,41 @@
 package org.example.domain;
 
-import java.util.Scanner;
 import java.util.UUID;
 
 public class Todo {
-    UUID id =UUID.randomUUID();
+    UUID id;
     private String title;
     private String description;
-    private  String createdBy;
+    private String createdBy;
     private String assignedTo;
-    private  String status;
-    private  String priority;
+    private String status;
+    private String priority;
     private String created;
-    public Todo(UUID id, String description, String status){};
-    public Todo( UUID id,String title,String description,String createdBy,String assignedTo,String status,String priority,String created){
-        this.id = id;
-        this.assignedTo=assignedTo;
-        this.created=created;
-        this.createdBy=createdBy;
-        this.priority=priority;
-        this.description=description;
-        this.status=status;
-        this.title=title;
 
-    };
+    public Todo() {
+    }
+
+    public Todo(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.id = UUID.randomUUID();
+    }
+
+    ;
+
+    public Todo(String title, String description, String createdBy, String assignedTo, String status, String priority, String created) {
+        this.id = UUID.randomUUID();
+        this.assignedTo = assignedTo;
+        this.created = created;
+        this.createdBy = createdBy;
+        this.priority = priority;
+        this.description = description;
+        this.status = status;
+        this.title = title;
+
+    }
+
+    ;
 
     public UUID getId() {
         return id;
@@ -84,6 +96,7 @@ public class Todo {
     public String getCreated() {
         return created;
     }
+
     public String isCreated() {
         return created;
     }
