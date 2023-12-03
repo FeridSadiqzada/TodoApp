@@ -7,13 +7,14 @@ import java.util.UUID;
 public class TodoRepository   {
     private final List<Todo> todoList = new ArrayList<>();
 
+    public List<Todo> getTodoList() {
+        return todoList;
+    }
     public void addTodo(Todo todo) {
         todoList.add(todo);
     }
-
     public void deleteTodo(UUID id) {
         todoList.removeIf(todo -> todo.getId().equals(id));
-
        }
     public void updateTodo(UUID id, Todo updatedTodo) {
         getTodoById(id).ifPresentOrElse(

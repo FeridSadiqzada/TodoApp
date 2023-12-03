@@ -12,7 +12,7 @@ public class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
 
-        Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
+        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
         todoService.addTask();
 
         List<Todo> allTodos = todoService.readTasks();
@@ -26,7 +26,7 @@ public class TodoServiceTest {
         TodoService todoService = new TodoService(todoRepository);
 
         // Adding a Todo
-        Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
+        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
         todoService.addTask();
 
         // Updating the added Todo
@@ -43,7 +43,7 @@ public class TodoServiceTest {
         TodoService todoService = new TodoService(todoRepository);
 
         // Adding a Todo
-        Todo todoToAdd = new Todo(UUID.randomUUID(), "Sample Todo", "This is a sample task");
+        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
         todoService.addTask();
 
         // Deleting the added Todo

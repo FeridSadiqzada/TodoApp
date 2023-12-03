@@ -1,12 +1,10 @@
 package org.example.controller;
-
 import org.example.service.TodoService;
 import org.example.service.UserService;
-
 import java.util.Scanner;
 public class TodoController {
     private final TodoService todoService;
-    UserService userService;
+
     private final Scanner scanner = new Scanner(System.in);
     public TodoController(TodoService todoService) {
         this.todoService = todoService;

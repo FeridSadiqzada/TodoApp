@@ -1,7 +1,14 @@
 package org.example.domain;
-
 public class Session {
+    static String currentUserName;
 
-    static String currentUserId;
+    public static void setCurrentUserName(String currentUserName) {
+        Session.currentUserName = currentUserName;
+    }
+
+    public static String getCurrentUserName() {
+        return currentUserName;
+    }
+
     static boolean isLogged;
 }
