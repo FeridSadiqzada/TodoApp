@@ -7,13 +7,15 @@ public class Todo {
     UUID id =UUID.randomUUID();
     private String title;
     private String description;
-    private  String createdBy;
-    private String assignedTo;
+    private  UUID createdBy;
+    private  UUID assignedTo;
     private  String status;
     private  String priority;
     private String created;
     public Todo(UUID id, String description, String status){};
-    public Todo( UUID id,String title,String description,String createdBy,String assignedTo,String status,String priority,String created){
+    public Todo( UUID id,String title,String description,
+                 UUID createdBy,
+                 UUID assignedTo,String status,String priority,String created){
         this.id = id;
         this.assignedTo=assignedTo;
         this.created=created;
@@ -49,19 +51,19 @@ public class Todo {
         this.description = description;
     }
 
-    public String getCreatedBy() {
+    public UUID getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(UUID createdBy) {
         this.createdBy = createdBy;
     }
 
-    public String getAssignedTo() {
+    public UUID getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(String assignedTo) {
+    public void setAssignedTo(UUID assignedTo) {
         this.assignedTo = assignedTo;
     }
 

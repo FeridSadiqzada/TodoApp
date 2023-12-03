@@ -20,17 +20,17 @@ public class TodoService {
     }
 
     public void addTask(Todo todo) {
-            System.out.println("Enter id:");
-            UUID id = UUID.fromString(scanner.nextLine());
-
-            System.out.println("Enter title:");
-            String title = scanner.nextLine();
-
-            System.out.println("Enter description:");
-            String description = scanner.nextLine();
-
-            Todo newTodo = new Todo(id, title, description);
-            repository.addTodo(newTodo);
+//            System.out.println("Enter id:");
+//            UUID id = UUID.fromString(scanner.nextLine());
+//
+//            System.out.println("Enter title:");
+//            String title = scanner.nextLine();
+//
+//            System.out.println("Enter description:");
+//            String description = scanner.nextLine();
+//
+//            Todo newTodo = new Todo(id, title, description);
+            repository.addTodo(todo);
         }
     public void deleteTask(Scanner scanner) {
         System.out.println("Enter the ID of the task you want to delete:");

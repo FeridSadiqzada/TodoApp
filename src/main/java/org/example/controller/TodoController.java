@@ -28,6 +28,7 @@ public class TodoController {
                 case 1:
                     System.out.println("enter description");
                     String description = scanner.nextLine();
+                    System.out.println("enter status");
                     String status = scanner.nextLine();
                     Todo todo = new Todo(UUID.randomUUID(), description, status);
                     todo.setDescription(description);

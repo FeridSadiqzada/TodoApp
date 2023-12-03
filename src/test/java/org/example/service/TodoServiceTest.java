@@ -1,6 +1,7 @@
+package org.example.service;
+
 import org.example.domain.Todo;
-import org.example.repository.TodoRepository;
-import org.example.service.TodoService;
+import org.example.repository.TodoRepository; 
 import org.junit.Test;
 import java.util.List;
 import java.util.UUID;
