@@ -1,4 +1,5 @@
 package org.example.service;
+import org.example.Main;
 import org.example.domain.Database;
 import org.example.domain.Status;
 import org.example.domain.Todo;
@@ -8,6 +9,8 @@ import java.util.Scanner;
 import java.util.UUID;
 public class TodoService {
     private static  TodoRepository todoRepository;
+    private static Status todoStatus;
+    private static  Todo todo;
     private Scanner scanner = new Scanner(System.in);
 
     public TodoService(TodoRepository todoRepository) {
@@ -45,32 +48,68 @@ public class TodoService {
 
        public void updateTask(Scanner scanner) {
            System.out.println(todoRepository.getTodoList());
-            System.out.println("Enter the ID of the task you want to update:");
-            String idString = scanner.nextLine();
-            UUID id = UUID.fromString(idString);
-            Todo existingTodo = todoRepository.getTodoById(id).orElse(null);
+           System.out.println("Enter the ID of the task you want to update:");
+           String idString = scanner.nextLine();
+           UUID id = UUID.fromString(idString);
+           Todo existingTodo = todoRepository.getTodoById(id).orElse(null);
 
-            if (existingTodo != null) {
+           if (existingTodo != null) {
+               String upchoice;
 
-                System.out.println("Enter the new description:");
-                String description = scanner.nextLine();
+               do {
+                   System.out.println("1. Description");
+                   System.out.println("2. Status ");
+                   System.out.println("0. Exit");
 
-                System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
-                String statuss = scanner.nextLine();
-                Status status = Status.valueOf(statuss.toUpperCase());
+                   System.out.print("Enter your choice: ");
+                   upchoice = scanner.nextLine().trim();
 
-                Todo updatedTodo = new Todo(description, status);
-                todoRepository.updateTodo(id, updatedTodo);
-                System.out.println("Task updated successfully.");
-            } else {
-                System.out.println("Task not found.");
-            }
-        }
-    public List<Todo> readTasks() {
-        List<Todo> tasks = todoRepository.readTasks();
-        tasks.forEach(t->{
-            System.out.println("id: "+ t.getId() +" assignedTo: " +t.getAssignedTo()+" Title: " +t.getTitle() + "," +  "Description: " + t.getDescription()+"  createdBy: "+ t.getCreatedBy()+" status: "+ t.getStatus());
-        });
-        return todoRepository.readTasks();
-    }
-}
+                   switch (upchoice) {
+                       case "1":
+                           System.out.println("Enter the new description:");
+                           String description = scanner.nextLine();
+                           Todo updatedDescription = new Todo(description);
+                           todoRepository.updateTodo(id, updatedDescription);
+                           System.out.println("Task updated successfully.");
+                           break;
+                       case "2":
+                           System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
+                           String statuss = scanner.nextLine();
+                           Status status = Status.valueOf(statuss.toUpperCase());
+                           Todo updatedStatus = new Todo(status);
+                           todoRepository.updateTodo(id, updatedStatus);
+                           System.out.println("Task updated successfully.");
+                           break;
+                       case "0":
+                           System.out.println("Exiting!");
+                           break;
+                       default:
+                           System.out.println("Invalid choice. Please try again.");
+                   }
+                   System.out.println("-----------------------");
+               } while (!upchoice.equals("0"));
+
+
+//
+//               System.out.println("Enter the new description:");
+//               String description = scanner.nextLine();
+//               System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
+//               String statuss = scanner.nextLine();
+//               Status status = Status.valueOf(statuss.toUpperCase());
+//
+//                   Todo updatedTodo = new Todo(description, status);
+//                   todoRepository.updateTodo(id, updatedTodo);
+//                   System.out.println("Task updated successfully.");
+           } else {
+               System.out.println("Task not found.");
+           }
+
+       }
+           public List<Todo> readTasks () {
+               List<Todo> tasks = todoRepository.readTasks();
+               tasks.forEach(t -> {
+                   System.out.println("id: " + t.getId() + " assignedTo: " + t.getAssignedTo() + " Title: " + t.getTitle() + "," + "Description: " + t.getDescription() + "  createdBy: " + t.getCreatedBy() + " status: " + t.getStatus());
+               });
+               return todoRepository.readTasks();
+           }
+       }

@@ -44,5 +44,4 @@ public class TodoController {
             }
             System.out.println("-----------------------");
         } while (!choice.equals("0"));
-    }
-}
+    }}

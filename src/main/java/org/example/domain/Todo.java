@@ -20,6 +20,12 @@ public class Todo {
         this.description=description;
         this.status=status;
     }
+    public Todo(String updatedDescription){
+        this.description=updatedDescription;
+    }
+    public Todo(Status updateStatsu){
+        this.status=updateStatsu;
+    }
     public Todo(String assignedTo,String title, String description) {
         this.title = title;
         this.description = description;
