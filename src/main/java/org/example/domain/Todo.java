@@ -12,11 +12,14 @@ public class Todo {
     private String description;
     private String createdBy;
     private String assignedTo;
-    private String status;
+    private Status status;
     private String priority;
     private String created;
 
-    public Todo() {}
+    public Todo(String description, Status status) {
+        this.description=description;
+        this.status=status;
+    }
     public Todo(String assignedTo,String title, String description) {
         this.title = title;
         this.description = description;
@@ -24,7 +27,7 @@ public class Todo {
         this.assignedTo=assignedTo;
         this.createdBy=currentUserName;
     };
-    public Todo(String title, String description, String createdBy, String assignedTo, String status, String priority, String created) {
+    public Todo(String title, String description, String createdBy, String assignedTo, Status status, String priority, String created) {
         this.id = UUID.randomUUID();
         this.assignedTo = assignedTo;
         this.created = created;
@@ -76,11 +79,11 @@ public class Todo {
         this.assignedTo = assignedTo;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

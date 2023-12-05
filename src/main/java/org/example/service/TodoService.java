@@ -1,18 +1,12 @@
 package org.example.service;
-import org.example.Main;
 import org.example.domain.Database;
 import org.example.domain.Status;
 import org.example.domain.Todo;
-import org.example.domain.User;
 import org.example.repository.TodoRepository;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 public class TodoService {
-    private static UserService userService;
     private static  TodoRepository todoRepository;
     private Scanner scanner = new Scanner(System.in);
 
@@ -54,17 +48,18 @@ public class TodoService {
             System.out.println("Enter the ID of the task you want to update:");
             String idString = scanner.nextLine();
             UUID id = UUID.fromString(idString);
-
             Todo existingTodo = todoRepository.getTodoById(id).orElse(null);
 
             if (existingTodo != null) {
+
                 System.out.println("Enter the new description:");
                 String description = scanner.nextLine();
 
-                System.out.println("Enter the new status:");
-                String status = scanner.nextLine();
+                System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
+                String statuss = scanner.nextLine();
+                Status status = Status.valueOf(statuss.toUpperCase());
 
-                Todo updatedTodo = new Todo(  description, status);
+                Todo updatedTodo = new Todo(description, status);
                 todoRepository.updateTodo(id, updatedTodo);
                 System.out.println("Task updated successfully.");
             } else {
@@ -74,7 +69,7 @@ public class TodoService {
     public List<Todo> readTasks() {
         List<Todo> tasks = todoRepository.readTasks();
         tasks.forEach(t->{
-            System.out.println("id: "+ t.getId() +" assignedTo: " +t.getAssignedTo()+" Title: " +t.getTitle() + "," +  "Description: " + t.getDescription()+"  createdBy: "+ t.getCreatedBy());
+            System.out.println("id: "+ t.getId() +" assignedTo: " +t.getAssignedTo()+" Title: " +t.getTitle() + "," +  "Description: " + t.getDescription()+"  createdBy: "+ t.getCreatedBy()+" status: "+ t.getStatus());
         });
         return todoRepository.readTasks();
     }

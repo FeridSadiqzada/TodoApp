@@ -20,6 +20,7 @@ public class TodoRepository   {
         getTodoById(id).ifPresentOrElse(
                 todo -> {
                     todo.setDescription(updatedTodo.getDescription());
+                    todo.setStatus(updatedTodo.getStatus());
                     todo.setCreated(updatedTodo.isCreated());
                 },
                 () -> {
