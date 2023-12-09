@@ -8,6 +8,5 @@ public class Database {
     public List<User> getUSERS() {
         return USERS;
     }
-
-
+    public final static List<Todo> TASKS = new ArrayList<>();
 }

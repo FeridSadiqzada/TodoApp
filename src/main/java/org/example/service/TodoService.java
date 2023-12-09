@@ -1,5 +1,4 @@
 package org.example.service;
-import org.example.Main;
 import org.example.domain.Database;
 import org.example.domain.Status;
 import org.example.domain.Todo;
@@ -8,9 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 public class TodoService {
+    private static Database database;
     private static  TodoRepository todoRepository;
-    private static Status todoStatus;
-    private static  Todo todo;
     private Scanner scanner = new Scanner(System.in);
 
     public TodoService(TodoRepository todoRepository) {
@@ -18,22 +16,47 @@ public class TodoService {
     }
 
     public void addTask() {
+        System.out.println("task or subtask?");
+        String tasks = scanner.nextLine();
+        try {
+            if (tasks.equals("task") ) {
+                System.out.println("Enter assignedTo:");
+                String assignedTo = scanner.nextLine();
+                if (Database.USERS.stream().anyMatch(u -> u.getUserName().equals(assignedTo))) {
+                } else {
+                    System.out.println("bele user yoxdur");
+                }
+                System.out.println("Enter title:");
+                String title = scanner.nextLine();
 
+                System.out.println("Enter description:");
+                String description = scanner.nextLine();
 
-        System.out.println("Enter assignedTo:");
-        String assignedTo = scanner.nextLine();
-        if (Database.USERS.stream().anyMatch(u -> u.getUserName().equals(u.getUserName()))) {
-        } else {
-            System.out.println("bele user yoxdur");
+                Todo newTodo = new Todo(assignedTo, title, description);
+                todoRepository.addTodo(newTodo);
+            } else if (tasks.equals("subtask")) {
+                System.out.println(todoRepository.getTodoList());
+                System.out.println("subtask yaratmaq istediyinizin idsini daxil edin");
+                String taskId =scanner.nextLine();
+                if (TodoRepository.getTodoList().stream().anyMatch(u -> u.getAssignedTo().equals(taskId)))
+                    {
+                } else {
+                    System.out.println("bele task yoxdur");
+                }
+                System.out.println("Enter title:");
+                String title = scanner.nextLine();
+
+                System.out.println("Enter description:");
+                String description = scanner.nextLine();
+
+                Todo newTodo = new Todo( title, description);
+                todoRepository.addTodo(newTodo);
+           }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid status. Please enter task or subtask.");
         }
-            System.out.println("Enter title:");
-            String title = scanner.nextLine();
 
-            System.out.println("Enter description:");
-            String description = scanner.nextLine();
 
-            Todo newTodo = new Todo(assignedTo, title, description);
-            todoRepository.addTodo(newTodo);
         }
     public void deleteTask(Scanner scanner) {
         System.out.println(todoRepository.getTodoList());
@@ -75,10 +98,17 @@ public class TodoService {
                        case "2":
                            System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
                            String statuss = scanner.nextLine();
-                           Status status = Status.valueOf(statuss.toUpperCase());
-                           Todo updatedStatus = new Todo(status);
-                           todoRepository.updateTodo(id, updatedStatus);
-                           System.out.println("Task updated successfully.");
+                           try {
+                               Status status = Status.valueOf(statuss.toUpperCase());
+
+                               if (status.equals(Status.PROGRESS) || status.equals(Status.COMPLETED) || status.equals(Status.HOLD)) {
+                                   Todo updatedStatus = new Todo(status);
+                                   todoRepository.updateTodo(id, updatedStatus);
+                                   System.out.println("Task updated successfully.");
+                               }
+                           } catch (IllegalArgumentException e) {
+                               System.out.println("Invalid status. Please enter PROGRESS, COMPLETED, or HOLD.");
+                           }
                            break;
                        case "0":
                            System.out.println("Exiting!");
@@ -90,16 +120,6 @@ public class TodoService {
                } while (!upchoice.equals("0"));
 
 
-//
-//               System.out.println("Enter the new description:");
-//               String description = scanner.nextLine();
-//               System.out.println("Enter the new status (PROGRESS, COMPLETED, HOLD):");
-//               String statuss = scanner.nextLine();
-//               Status status = Status.valueOf(statuss.toUpperCase());
-//
-//                   Todo updatedTodo = new Todo(description, status);
-//                   todoRepository.updateTodo(id, updatedTodo);
-//                   System.out.println("Task updated successfully.");
            } else {
                System.out.println("Task not found.");
            }
