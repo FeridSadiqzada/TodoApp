@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.Main;
 import org.example.controller.TodoController;
+import org.example.repository.ProjectRepository;
+import org.example.service.ProjectService;
 import org.example.domain.Database;
 import org.example.domain.Session;
 import org.example.domain.User;
@@ -9,6 +11,9 @@ import org.example.domain.User;
 import java.util.Scanner;
 
 public class UserService {
+
+
+
     private final Scanner scanner = new Scanner(System.in);
   private static Session session;
     public void loging() {
@@ -63,7 +68,9 @@ e.printStackTrace();
         Database.USERS.stream().forEach(System.out::println);
         if (Database.USERS.stream().anyMatch(u -> u.getUserName().equals(username) && u.getPassword().equals(password))) {
             System.out.println("hesaba daxil oldunuz");
-            new Main().todoController.run();
+           // new Main().todoController.run();
+            new Main().projectService.manageProjects();
+
 
         } else {
             System.out.println("bele hesab yoxdur");

@@ -7,6 +7,7 @@ import static org.example.domain.Session.currentUserName;
 public class Todo {
 
     UUID id;
+    private String projectİD;
 
     private String title;
     private String description;

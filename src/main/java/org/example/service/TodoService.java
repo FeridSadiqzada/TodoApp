@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 public class TodoService {
-    private static Database database;
     private static  TodoRepository todoRepository;
     private Scanner scanner = new Scanner(System.in);
 
@@ -55,9 +54,7 @@ public class TodoService {
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid status. Please enter task or subtask.");
         }
-
-
-        }
+          }
     public void deleteTask(Scanner scanner) {
         System.out.println(todoRepository.getTodoList());
         System.out.println("Enter the ID of the task you want to delete:");
@@ -66,9 +63,7 @@ public class TodoService {
 
         todoRepository.deleteTodo(id);
         System.out.println("Task deleted successfully.");
-
     }
-
        public void updateTask(Scanner scanner) {
            System.out.println(todoRepository.getTodoList());
            System.out.println("Enter the ID of the task you want to update:");
