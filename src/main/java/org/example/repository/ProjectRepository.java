@@ -33,5 +33,4 @@ public class ProjectRepository {
         projectList.removeIf(project -> project.getId().equals(id));
     }
 
-    // Gerektiğinde diğer işlevleri de ekleyebilirsiniz (örneğin, projeleri güncelleme)
 }
