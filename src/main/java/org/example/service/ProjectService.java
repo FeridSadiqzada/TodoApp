@@ -1,10 +1,12 @@
 package org.example.service;
+
 import org.example.Main;
 import org.example.domain.Project;
 import org.example.repository.ProjectRepository;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.List;
+@SuppressWarnings("ALL")
 
 public class ProjectService {
     private ProjectRepository projectRepository;
@@ -43,7 +45,7 @@ public class ProjectService {
     private void createNewProject() {
         System.out.println("Proje başlığını girin:");
         String title = scanner.nextLine();
-        Project newProject = new Project(UUID.randomUUID(), title);
+        Project newProject = Project.builder().build();;
         projectRepository.addProject(newProject);
         System.out.println("Yeni proje oluşturuldu: " + title);
     }

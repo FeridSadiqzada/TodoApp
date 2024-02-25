@@ -1,32 +1,24 @@
+
 package org.example.domain;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
-
+@SuppressWarnings("ALL")
+@Getter
+@Setter
 public class Project {
-
-    UUID id;
-    String description;
-    String title;
-    String createdAt;
-
-    public Project(UUID id, String title) {
-        this.id=id;
-        this.title=title;
+    private UUID id;
+    private String description;
+    private String title;
+   private String createdAt;
+@Builder
+    public Project( UUID id,  String title,String description,String createdAt) {
+        this.id = id;
+        this.title = title;
+        this.createdAt=createdAt;
+        this.description=description;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
 }

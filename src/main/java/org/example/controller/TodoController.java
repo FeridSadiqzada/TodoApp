@@ -2,16 +2,16 @@ package org.example.controller;
 import org.example.service.TodoService;
 import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 
 public class TodoController {
     private final TodoService todoService;
     private final Scanner scanner = new Scanner(System.in);
-
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
-        public void run () {
-            String choice;
+        public void run() {
+        String choice;
 
             do {
                 System.out.println("1. Add Task");

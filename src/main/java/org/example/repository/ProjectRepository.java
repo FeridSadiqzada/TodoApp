@@ -1,9 +1,12 @@
 package org.example.repository;
 
-import org.example.domain.Project;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
+import java.util.ArrayList;
+import org.example.domain.Project;
+
+@SuppressWarnings("ALL")
 
 public class ProjectRepository {
     private List<Project> projectList;

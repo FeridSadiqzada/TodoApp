@@ -1,4 +1,6 @@
 package org.example.domain;
+@SuppressWarnings("ALL")
+
 public class Session {
     static String currentUserName;
 

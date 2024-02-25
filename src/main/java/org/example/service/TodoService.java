@@ -1,4 +1,5 @@
 package org.example.service;
+
 import org.example.domain.Database;
 import org.example.domain.Status;
 import org.example.domain.Todo;
@@ -6,6 +7,8 @@ import org.example.repository.TodoRepository;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+@SuppressWarnings("ALL")
+
 public class TodoService {
     private static  TodoRepository todoRepository;
     private Scanner scanner = new Scanner(System.in);
@@ -31,7 +34,8 @@ public class TodoService {
                 System.out.println("Enter description:");
                 String description = scanner.nextLine();
 
-                Todo newTodo = new Todo(assignedTo, title, description);
+                Todo newTodo = Todo.builder().build();
+
                 todoRepository.addTodo(newTodo);
             } else if (tasks.equals("subtask")) {
                 System.out.println(todoRepository.getTodoList());
@@ -48,7 +52,7 @@ public class TodoService {
                 System.out.println("Enter description:");
                 String description = scanner.nextLine();
 
-                Todo newTodo = new Todo( title, description);
+                Todo newTodo = Todo.builder().build();
                 todoRepository.addTodo(newTodo);
            }
         } catch (IllegalArgumentException e) {
@@ -86,7 +90,7 @@ public class TodoService {
                        case "1":
                            System.out.println("Enter the new description:");
                            String description = scanner.nextLine();
-                           Todo updatedDescription = new Todo(description);
+                           Todo updatedDescription = Todo.builder().build();
                            todoRepository.updateTodo(id, updatedDescription);
                            System.out.println("Task updated successfully.");
                            break;
@@ -97,7 +101,7 @@ public class TodoService {
                                Status status = Status.valueOf(statuss.toUpperCase());
 
                                if (status.equals(Status.PROGRESS) || status.equals(Status.COMPLETED) || status.equals(Status.HOLD)) {
-                                   Todo updatedStatus = new Todo(status);
+                                   Todo updatedStatus = Todo.builder().build();
                                    todoRepository.updateTodo(id, updatedStatus);
                                    System.out.println("Task updated successfully.");
                                }

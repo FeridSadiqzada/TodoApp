@@ -1,15 +1,14 @@
 package org.example.service;
 import org.example.Main;
 import org.example.domain.Constants;
-import org.example.domain.Database;
 import org.example.domain.Session;
 import org.example.domain.User;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+@SuppressWarnings("ALL")
 
 public class UserService {
     private final Scanner scanner = new Scanner(System.in);
