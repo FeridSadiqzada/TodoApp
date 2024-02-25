@@ -12,7 +12,10 @@ public class TodoServiceTest {
         TodoRepository todoRepository = new TodoRepository();
         TodoService todoService = new TodoService(todoRepository);
 
-        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
+        Todo todoToAdd = Todo.builder()
+                .projectİD("Sample Todo")
+                .title("This is a sample task")
+                .build();
         todoService.addTask();
 
         List<Todo> allTodos = todoService.readTasks();
@@ -26,7 +29,11 @@ public class TodoServiceTest {
         TodoService todoService = new TodoService(todoRepository);
 
         // Adding a Todo
-        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
+        Todo todoToAdd = Todo.builder()
+                .title("Sample Todo")
+                .description("This is a sample task")
+                .build();
+
         todoService.addTask();
 
         // Updating the added Todo
@@ -43,7 +50,10 @@ public class TodoServiceTest {
         TodoService todoService = new TodoService(todoRepository);
 
         // Adding a Todo
-        Todo todoToAdd = new Todo( "Sample Todo", "This is a sample task");
+        Todo todoToAdd = Todo.builder()
+                .projectİD("Sample Todo")
+                .title("This is a sample task")
+                .build();
         todoService.addTask();
 
         // Deleting the added Todo
