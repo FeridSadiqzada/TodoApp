@@ -26,6 +26,24 @@ public class TodoRepository   {
     public void deleteTodo(UUID id) {
         getTodoList().removeIf(todo -> todo.getId().equals(id));
        }
+    public static void deleteTodoSF(UUID id) {
+        for (Todo todo : getTodoList()) {
+            if (todo.getId().equals(id)) {
+                todo.setStatus("D");
+                break;
+            }
+        }
+       }
+
+    public static String getStatusById(UUID uuid) {
+        for (Todo todo : getTodoList()) {
+            if (todo.getId().equals(uuid)) {
+                return todo.getStatus();
+            }
+        }
+        return "Not Found";
+    }
+
     public void updateTodo(UUID id, Todo updatedTodo) {
         getTodoById(id).ifPresentOrElse(
                 todo -> {
