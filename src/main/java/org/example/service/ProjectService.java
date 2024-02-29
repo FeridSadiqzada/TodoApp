@@ -9,9 +9,9 @@ import java.util.List;
 @SuppressWarnings("ALL")
 
 public class ProjectService {
-    private ProjectRepository projectRepository;
-    private TodoService todoService;
-    private Scanner scanner = new Scanner(System.in);
+    private final ProjectRepository projectRepository;
+    private final TodoService todoService;
+    private final Scanner scanner = new Scanner(System.in);
 
     public ProjectService(ProjectRepository projectRepository, TodoService todoService) {
         this.projectRepository = projectRepository;

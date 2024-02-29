@@ -15,12 +15,12 @@ public class Todo {
     private String description;
     private String createdBy;
     private String assignedTo;
-    private Status status;
+    private String status;
     private String priority;
     private String created;
 
     @Builder
-    public Todo(String projectİD,String title, String description, String createdBy, String assignedTo, Status status, String priority, String created) {
+    public Todo(String projectİD,String title, String description, String createdBy, String assignedTo, String status, String priority, String created) {
         this.id = UUID.randomUUID();
         this.projectİD=projectİD;
         this.assignedTo = assignedTo;

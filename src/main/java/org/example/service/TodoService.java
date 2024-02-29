@@ -11,9 +11,11 @@ import java.util.*;
 @SuppressWarnings("ALL")
 
 public class TodoService {
-    private TodoRepository todoRepository;
-    private Scanner scanner = new Scanner(System.in);
-    private UserService userService;
+//    TODO:bunlari final elemek lazimdiki gelecekde kimse bunlara yeni object assign ede bilmesin
+//    TODO:cunki bu hisse realda dependecy injection vasitesi ile inject edilecek elnen new edilmiyecek
+    private final TodoRepository todoRepository;
+    private final Scanner scanner = new Scanner(System.in);
+    private final UserService userService;
 
     public TodoService(TodoRepository todoRepository, UserService userService) {
         this.todoRepository = todoRepository;
@@ -26,8 +28,12 @@ public class TodoService {
     }
 
 
+
+
     //String userIdstr= userId.toString();
     public void addTask() {
+        List<UUID> uuids = userService.getAllUserIds();
+        List<String> emails = userService.getEmailsByUserIds(uuids);
 
         System.out.println("task or subtask?");
         String tasks = scanner.nextLine();
@@ -35,18 +41,24 @@ public class TodoService {
         try {
 
             if (tasks.equals("task") ) {
-                System.out.println("Enter user email:");
-                String email = scanner.nextLine();
-                UUID userId = getUserIdByEmail(email);
-                System.out.println("User ID: " + userId);
+//                System.out.println("Enter user email:");
+//                String email = scanner.nextLine();
+                //UUID userId = getUserIdByEmail(email);
+                for (int i = 0; i < uuids.size(); i++) {
+                    UUID uuid = uuids.get(i);
+                    String emailfor = emails.get(i);
+                    System.out.printf("User ID: %s, Email: %s\n", uuid, emailfor);
+                }
                 System.out.println("Taski assign elemek istediyiniz id ni daxil edin");
                 String uuidstring = scanner.nextLine();
                 UUID assignedTo = UUID.fromString(uuidstring);
-                if (userId.equals(assignedTo)){
-                    System.out.println("salaam");
+
+                if (uuids.contains(assignedTo)){
                 } else {
                     System.out.println("bele user yoxdur");
                 }
+                String username = userService.getUsernameById(assignedTo);
+                String status = todoRepository.getStatusById(assignedTo);
                 System.out.println("Enter title:");
                 String title = scanner.nextLine();
 
@@ -57,7 +69,8 @@ public class TodoService {
                         .assignedTo(assignedTo.toString())
                         .title(title)
                         .description(description)
-                        //.createdBy()
+                        .createdBy(username)
+                        .status("Active")
                         .build();
 
                 todoRepository.addTodo(newTodo);
@@ -89,7 +102,7 @@ public class TodoService {
         String idString = scanner.nextLine();
         UUID id = UUID.fromString(idString);
 
-        todoRepository.deleteTodo(id);
+        todoRepository.deleteTodoSF(id);
         System.out.println("Task deleted successfully.");
     }
        public void updateTask(Scanner scanner) {
